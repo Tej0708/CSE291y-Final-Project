@@ -1,0 +1,162 @@
+=== original rebuild ===
+BUILD_OK
+=== E3 coverage compare ===
+allocate_in_grant_region     spec  cov=77
+allocate_in_grant_region     plain cov=39
+in_app_ram_memory            spec  cov=51
+in_app_ram_memory            plain cov=37
+in_app_flash_memory          spec  cov=51
+in_app_flash_memory          plain cov=37
+add_shared_readwrite         spec  cov=77
+add_shared_readwrite         plain cov=43
+update_app_memory            spec  cov=81
+update_app_memory            plain cov=41
+api_sequence                 spec  cov=145
+api_sequence                 plain cov=76
+
+written /home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/results/coverage_compare.json
+=== E1 cargo-mutants blind set ===
+156 cargo-mutants enumerated
+[2/156] flash_start: building...
+  build failed 5x -> unviable
+[3/156] flash_end: building...
+  build failed 5x -> unviable
+[4/156] memory_start: building...
+  build failed 5x -> unviable
+[5/156] memory_size: building...
+    -> survived
+[6/156] memory_size: building...
+    -> survived
+[7/156] memory_end: building...
+  build failed 5x -> unviable
+[8/156] app_break: building...
+  build failed 5x -> unviable
+[9/156] kernel_break: building...
+  build failed 5x -> unviable
+[10/156] in_app_ram_memory: building...
+    -> spec-only
+[11/156] in_app_ram_memory: building...
+    -> spec-only
+[17/156] in_app_flash_memory: building...
+    -> spec-only
+[18/156] in_app_flash_memory: building...
+    -> spec-only
+[24/156] new_regions: building...
+  build failed 5x -> unviable
+[25/156] new_regions: building...
+  build failed 5x -> unviable
+[26/156] new_regions: building...
+  build failed 5x -> unviable
+[27/156] new_regions: building...
+  build failed 5x -> unviable
+[28/156] add_shared_readonly_buffer: building...
+    -> spec-only
+[31/156] add_shared_readwrite_buffer: building...
+    -> spec-only
+[42/156] allocate_in_grant_region_internal: building...
+    -> survived
+[43/156] allocate_in_grant_region_internal: building...
+  build failed 5x -> unviable
+[54/156] set_kernel_break: building...
+    -> spec-only
+[55/156] next_available_ipc_idx: building...
+    -> survived
+[56/156] next_available_ipc_idx: building...
+    -> survived
+[57/156] next_available_ipc_idx: building...
+    -> survived
+[66/156] any_overlaps: building...
+    -> survived
+[67/156] any_overlaps: building...
+    -> survived
+[78/156] overlaps_app_block: building...
+    -> survived
+[79/156] overlaps_app_block: building...
+    -> survived
+[82/156] allocate_ipc_region: building...
+  build failed 5x -> unviable
+[95/156] get_flash_region: building...
+  build failed 5x -> unviable
+[96/156] get_ram_regions: building...
+  build failed 5x -> unviable
+[97/156] get_app_breaks: building...
+  build failed 5x -> unviable
+[113/156] allocate_app_memory: building...
+  build failed 5x -> unviable
+[131/156] update_app_memory: building...
+  build failed 5x -> unviable
+
+=== CARGO-MUTANTS SUMMARY ===
+  skipped-unreachable: 122
+  spec-only: 7
+  survived: 10
+  unviable: 17
+  mutants run: 17; killed by spec: 7; killed by plain: 0
+=== E3 300s budget tier ===
+building M2-space-flip...
+[1] M2-space-flip allocate_in_grant_region_spec seed=0 detected=True
+[2] M2-space-flip allocate_in_grant_region_plain seed=0 detected=False
+[3] M2-space-flip allocate_in_grant_region_spec seed=1 detected=True
+[4] M2-space-flip allocate_in_grant_region_plain seed=1 detected=False
+building M3-drop-set-kernel-break...
+[5] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=0 detected=True
+[6] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=0 detected=False
+[7] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=1 detected=True
+[8] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=1 detected=False
+[9] M3-drop-set-kernel-break api_sequence_spec seed=0 detected=True
+[10] M3-drop-set-kernel-break api_sequence_plain seed=0 detected=False
+[11] M3-drop-set-kernel-break api_sequence_spec seed=1 detected=True
+[12] M3-drop-set-kernel-break api_sequence_plain seed=1 detected=False
+building M4-align-mask...
+[13] M4-align-mask allocate_in_grant_region_spec seed=0 detected=True
+[14] M4-align-mask allocate_in_grant_region_plain seed=0 detected=False
+[15] M4-align-mask allocate_in_grant_region_spec seed=1 detected=True
+[16] M4-align-mask allocate_in_grant_region_plain seed=1 detected=False
+building M5-align-no-min...
+[17] M5-align-no-min allocate_in_grant_region_spec seed=0 detected=True
+[18] M5-align-no-min allocate_in_grant_region_plain seed=0 detected=True
+[19] M5-align-no-min allocate_in_grant_region_spec seed=1 detected=True
+[20] M5-align-no-min allocate_in_grant_region_plain seed=1 detected=True
+building M6-hwm-no-max...
+[21] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=0 detected=True
+[22] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=0 detected=False
+[23] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=1 detected=True
+[24] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=1 detected=False
+[25] M6-hwm-no-max api_sequence_spec seed=0 detected=True
+[26] M6-hwm-no-max api_sequence_plain seed=0 detected=False
+[27] M6-hwm-no-max api_sequence_spec seed=1 detected=True
+[28] M6-hwm-no-max api_sequence_plain seed=1 detected=False
+building M7-update-drop-hwm-check...
+[29] M7-update-drop-hwm-check update_app_memory_spec seed=0 detected=True
+[30] M7-update-drop-hwm-check update_app_memory_plain seed=0 detected=False
+[31] M7-update-drop-hwm-check update_app_memory_spec seed=1 detected=True
+[32] M7-update-drop-hwm-check update_app_memory_plain seed=1 detected=False
+[33] M7-update-drop-hwm-check api_sequence_spec seed=0 detected=True
+[34] M7-update-drop-hwm-check api_sequence_plain seed=0 detected=False
+[35] M7-update-drop-hwm-check api_sequence_spec seed=1 detected=True
+[36] M7-update-drop-hwm-check api_sequence_plain seed=1 detected=False
+building M8-update-no-ab-write...
+[37] M8-update-no-ab-write update_app_memory_spec seed=0 detected=True
+[38] M8-update-no-ab-write update_app_memory_plain seed=0 detected=False
+[39] M8-update-no-ab-write update_app_memory_spec seed=1 detected=True
+[40] M8-update-no-ab-write update_app_memory_plain seed=1 detected=False
+[41] M8-update-no-ab-write api_sequence_spec seed=0 detected=True
+[42] M8-update-no-ab-write api_sequence_plain seed=0 detected=False
+[43] M8-update-no-ab-write api_sequence_spec seed=1 detected=True
+[44] M8-update-no-ab-write api_sequence_plain seed=1 detected=False
+
+=== DETECTION SUMMARY ===
+M2-space-flip                    l3             allocate_in_grant_region     spec 2/2  plain 0/2
+M3-drop-set-kernel-break         h2             allocate_in_grant_region     spec 2/2  plain 0/2
+M3-drop-set-kernel-break         h2             api_sequence                 spec 2/2  plain 0/2
+M4-align-mask                    l3             allocate_in_grant_region     spec 2/2  plain 0/2
+M5-align-no-min                  panic          allocate_in_grant_region     spec 2/2  plain 2/2
+M6-hwm-no-max                    h2             add_shared_readwrite         spec 2/2  plain 0/2
+M6-hwm-no-max                    h2             api_sequence                 spec 2/2  plain 0/2
+M7-update-drop-hwm-check         underflow      api_sequence                 spec 2/2  plain 0/2
+M7-update-drop-hwm-check         underflow      update_app_memory            spec 2/2  plain 0/2
+M8-update-no-ab-write            h2             api_sequence                 spec 2/2  plain 0/2
+M8-update-no-ab-write            h2             update_app_memory            spec 2/2  plain 0/2
+
+results: /home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/results/h1_results_1792976921.json
+=== FINAL CHAIN DONE ===

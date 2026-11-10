@@ -1,0 +1,157 @@
+[package]
+name = "ticktock-spec-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4.7"
+arbitrary = "1"
+kernel = { path = "../kernel" }
+flux_support = { path = "../flux_support" }
+
+# Spec-derived harnesses: oracle from Flux ensures + struct invariants
+[[bin]]
+name = "allocate_in_grant_region_spec"
+path = "fuzz_targets/allocate_in_grant_region_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "in_app_ram_memory_spec"
+path = "fuzz_targets/in_app_ram_memory_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "in_app_flash_memory_spec"
+path = "fuzz_targets/in_app_flash_memory_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "add_shared_readwrite_buffer_spec"
+path = "fuzz_targets/add_shared_readwrite_buffer_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "update_app_memory_spec"
+path = "fuzz_targets/update_app_memory_spec.rs"
+test = false
+doc = false
+bench = false
+
+# Auto-generated harnesses (E2 minimal translator demo)
+
+[[bin]]
+name = "in_app_ram_memory_gen"
+path = "fuzz_targets/gen/in_app_ram_memory_gen.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "in_app_flash_memory_gen"
+path = "fuzz_targets/gen/in_app_flash_memory_gen.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "add_shared_readwrite_buffer_gen"
+path = "fuzz_targets/gen/add_shared_readwrite_buffer_gen.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "update_app_memory_gen"
+path = "fuzz_targets/gen/update_app_memory_gen.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "allocate_in_grant_region_internal_gen"
+path = "fuzz_targets/gen/allocate_in_grant_region_internal_gen.rs"
+test = false
+doc = false
+bench = false
+
+# Plain byte-level baselines: identical input decoding, no spec oracle
+[[bin]]
+name = "allocate_in_grant_region_plain"
+path = "fuzz_targets/allocate_in_grant_region_plain.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "in_app_ram_memory_plain"
+path = "fuzz_targets/in_app_ram_memory_plain.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "in_app_flash_memory_plain"
+path = "fuzz_targets/in_app_flash_memory_plain.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "add_shared_readwrite_buffer_plain"
+path = "fuzz_targets/add_shared_readwrite_buffer_plain.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "update_app_memory_plain"
+path = "fuzz_targets/update_app_memory_plain.rs"
+test = false
+doc = false
+bench = false
+
+# E5 stateful sequence harnesses
+
+[[bin]]
+name = "api_sequence_spec"
+path = "fuzz_targets/api_sequence_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "api_sequence_plain"
+path = "fuzz_targets/api_sequence_plain.rs"
+test = false
+doc = false
+bench = false
+
+# E4 MpuRegionDefault trait-impl harnesses
+
+[[bin]]
+name = "mpu_default_spec"
+path = "fuzz_targets/mpu_default_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "mpu_default_plain"
+path = "fuzz_targets/mpu_default_plain.rs"
+test = false
+doc = false
+bench = false
+
+[workspace]

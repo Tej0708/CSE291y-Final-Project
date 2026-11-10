@@ -1,0 +1,62 @@
+{
+ "allocate_in_grant_region": {
+  "spec": {
+   "cov": 77,
+   "exit": 0
+  },
+  "plain": {
+   "cov": 39,
+   "exit": 0
+  }
+ },
+ "in_app_ram_memory": {
+  "spec": {
+   "cov": 51,
+   "exit": 0
+  },
+  "plain": {
+   "cov": 37,
+   "exit": 0
+  }
+ },
+ "in_app_flash_memory": {
+  "spec": {
+   "cov": 51,
+   "exit": 0
+  },
+  "plain": {
+   "cov": 37,
+   "exit": 0
+  }
+ },
+ "add_shared_readwrite": {
+  "spec": {
+   "cov": 77,
+   "exit": 0
+  },
+  "plain": {
+   "cov": 43,
+   "exit": 0
+  }
+ },
+ "update_app_memory": {
+  "spec": {
+   "cov": 81,
+   "exit": 0
+  },
+  "plain": {
+   "cov": 41,
+   "exit": 0
+  }
+ },
+ "api_sequence": {
+  "spec": {
+   "cov": 145,
+   "exit": 0
+  },
+  "plain": {
+   "cov": 76,
+   "exit": 0
+  }
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "targets": {
+  "in_app_ram_memory": {
+   "auto_lines": 2,
+   "todo_sites": 1,
+   "file": "in_app_ram_memory_gen.rs"
+  },
+  "in_app_flash_memory": {
+   "auto_lines": 2,
+   "todo_sites": 1,
+   "file": "in_app_flash_memory_gen.rs"
+  },
+  "add_shared_readwrite_buffer": {
+   "auto_lines": 3,
+   "todo_sites": 1,
+   "file": "add_shared_readwrite_buffer_gen.rs"
+  },
+  "update_app_memory": {
+   "auto_lines": 2,
+   "todo_sites": 1,
+   "file": "update_app_memory_gen.rs"
+  },
+  "allocate_in_grant_region_internal": {
+   "auto_lines": 5,
+   "todo_sites": 1,
+   "file": "allocate_in_grant_region_internal_gen.rs"
+  }
+ },
+ "total_auto_lines": 14,
+ "total_todo": 5
+}

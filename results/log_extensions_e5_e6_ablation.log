@@ -1,0 +1,408 @@
+=== BATCH 1: E6+E5 long budget ===
+building M2-space-flip...
+[1] M2-space-flip allocate_in_grant_region_spec seed=0 detected=True
+[2] M2-space-flip allocate_in_grant_region_plain seed=0 detected=False
+[3] M2-space-flip allocate_in_grant_region_spec seed=1 detected=True
+[4] M2-space-flip allocate_in_grant_region_plain seed=1 detected=False
+[5] M2-space-flip allocate_in_grant_region_spec seed=2 detected=True
+[6] M2-space-flip allocate_in_grant_region_plain seed=2 detected=False
+[7] M2-space-flip allocate_in_grant_region_spec seed=3 detected=True
+[8] M2-space-flip allocate_in_grant_region_plain seed=3 detected=False
+[9] M2-space-flip allocate_in_grant_region_spec seed=4 detected=True
+[10] M2-space-flip allocate_in_grant_region_plain seed=4 detected=False
+[11] M2-space-flip allocate_in_grant_region_spec seed=5 detected=True
+[12] M2-space-flip allocate_in_grant_region_plain seed=5 detected=False
+[13] M2-space-flip allocate_in_grant_region_spec seed=6 detected=True
+[14] M2-space-flip allocate_in_grant_region_plain seed=6 detected=False
+[15] M2-space-flip allocate_in_grant_region_spec seed=7 detected=True
+[16] M2-space-flip allocate_in_grant_region_plain seed=7 detected=False
+[17] M2-space-flip allocate_in_grant_region_spec seed=8 detected=True
+[18] M2-space-flip allocate_in_grant_region_plain seed=8 detected=False
+[19] M2-space-flip allocate_in_grant_region_spec seed=9 detected=True
+[20] M2-space-flip allocate_in_grant_region_plain seed=9 detected=False
+building M3-drop-set-kernel-break...
+[21] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=0 detected=True
+[22] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=0 detected=False
+[23] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=1 detected=True
+[24] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=1 detected=False
+[25] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=2 detected=True
+[26] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=2 detected=False
+[27] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=3 detected=True
+[28] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=3 detected=False
+[29] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=4 detected=True
+[30] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=4 detected=False
+[31] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=5 detected=True
+[32] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=5 detected=False
+[33] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=6 detected=True
+[34] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=6 detected=False
+[35] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=7 detected=True
+[36] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=7 detected=False
+[37] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=8 detected=True
+[38] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=8 detected=False
+[39] M3-drop-set-kernel-break allocate_in_grant_region_spec seed=9 detected=True
+[40] M3-drop-set-kernel-break allocate_in_grant_region_plain seed=9 detected=False
+[41] M3-drop-set-kernel-break api_sequence_spec seed=0 detected=True
+[42] M3-drop-set-kernel-break api_sequence_plain seed=0 detected=False
+[43] M3-drop-set-kernel-break api_sequence_spec seed=1 detected=True
+[44] M3-drop-set-kernel-break api_sequence_plain seed=1 detected=False
+[45] M3-drop-set-kernel-break api_sequence_spec seed=2 detected=True
+[46] M3-drop-set-kernel-break api_sequence_plain seed=2 detected=False
+[47] M3-drop-set-kernel-break api_sequence_spec seed=3 detected=True
+[48] M3-drop-set-kernel-break api_sequence_plain seed=3 detected=False
+[49] M3-drop-set-kernel-break api_sequence_spec seed=4 detected=True
+[50] M3-drop-set-kernel-break api_sequence_plain seed=4 detected=False
+[51] M3-drop-set-kernel-break api_sequence_spec seed=5 detected=True
+[52] M3-drop-set-kernel-break api_sequence_plain seed=5 detected=False
+[53] M3-drop-set-kernel-break api_sequence_spec seed=6 detected=True
+[54] M3-drop-set-kernel-break api_sequence_plain seed=6 detected=False
+[55] M3-drop-set-kernel-break api_sequence_spec seed=7 detected=True
+[56] M3-drop-set-kernel-break api_sequence_plain seed=7 detected=False
+[57] M3-drop-set-kernel-break api_sequence_spec seed=8 detected=True
+[58] M3-drop-set-kernel-break api_sequence_plain seed=8 detected=False
+[59] M3-drop-set-kernel-break api_sequence_spec seed=9 detected=True
+[60] M3-drop-set-kernel-break api_sequence_plain seed=9 detected=False
+building M4-align-mask...
+[61] M4-align-mask allocate_in_grant_region_spec seed=0 detected=True
+[62] M4-align-mask allocate_in_grant_region_plain seed=0 detected=False
+[63] M4-align-mask allocate_in_grant_region_spec seed=1 detected=True
+[64] M4-align-mask allocate_in_grant_region_plain seed=1 detected=False
+[65] M4-align-mask allocate_in_grant_region_spec seed=2 detected=True
+[66] M4-align-mask allocate_in_grant_region_plain seed=2 detected=False
+[67] M4-align-mask allocate_in_grant_region_spec seed=3 detected=True
+[68] M4-align-mask allocate_in_grant_region_plain seed=3 detected=False
+[69] M4-align-mask allocate_in_grant_region_spec seed=4 detected=True
+[70] M4-align-mask allocate_in_grant_region_plain seed=4 detected=False
+[71] M4-align-mask allocate_in_grant_region_spec seed=5 detected=True
+[72] M4-align-mask allocate_in_grant_region_plain seed=5 detected=False
+[73] M4-align-mask allocate_in_grant_region_spec seed=6 detected=True
+[74] M4-align-mask allocate_in_grant_region_plain seed=6 detected=False
+[75] M4-align-mask allocate_in_grant_region_spec seed=7 detected=True
+[76] M4-align-mask allocate_in_grant_region_plain seed=7 detected=False
+[77] M4-align-mask allocate_in_grant_region_spec seed=8 detected=True
+[78] M4-align-mask allocate_in_grant_region_plain seed=8 detected=False
+[79] M4-align-mask allocate_in_grant_region_spec seed=9 detected=True
+[80] M4-align-mask allocate_in_grant_region_plain seed=9 detected=False
+building M6-hwm-no-max...
+[81] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=0 detected=True
+[82] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=0 detected=False
+[83] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=1 detected=True
+[84] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=1 detected=False
+[85] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=2 detected=True
+[86] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=2 detected=False
+[87] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=3 detected=True
+[88] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=3 detected=False
+[89] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=4 detected=True
+[90] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=4 detected=False
+[91] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=5 detected=True
+[92] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=5 detected=False
+[93] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=6 detected=True
+[94] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=6 detected=False
+[95] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=7 detected=True
+[96] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=7 detected=False
+[97] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=8 detected=True
+[98] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=8 detected=False
+[99] M6-hwm-no-max add_shared_readwrite_buffer_spec seed=9 detected=True
+[100] M6-hwm-no-max add_shared_readwrite_buffer_plain seed=9 detected=False
+[101] M6-hwm-no-max api_sequence_spec seed=0 detected=True
+[102] M6-hwm-no-max api_sequence_plain seed=0 detected=False
+[103] M6-hwm-no-max api_sequence_spec seed=1 detected=True
+[104] M6-hwm-no-max api_sequence_plain seed=1 detected=False
+[105] M6-hwm-no-max api_sequence_spec seed=2 detected=True
+[106] M6-hwm-no-max api_sequence_plain seed=2 detected=False
+[107] M6-hwm-no-max api_sequence_spec seed=3 detected=True
+[108] M6-hwm-no-max api_sequence_plain seed=3 detected=False
+[109] M6-hwm-no-max api_sequence_spec seed=4 detected=True
+[110] M6-hwm-no-max api_sequence_plain seed=4 detected=False
+[111] M6-hwm-no-max api_sequence_spec seed=5 detected=True
+[112] M6-hwm-no-max api_sequence_plain seed=5 detected=False
+[113] M6-hwm-no-max api_sequence_spec seed=6 detected=True
+[114] M6-hwm-no-max api_sequence_plain seed=6 detected=False
+[115] M6-hwm-no-max api_sequence_spec seed=7 detected=True
+[116] M6-hwm-no-max api_sequence_plain seed=7 detected=False
+[117] M6-hwm-no-max api_sequence_spec seed=8 detected=True
+[118] M6-hwm-no-max api_sequence_plain seed=8 detected=False
+[119] M6-hwm-no-max api_sequence_spec seed=9 detected=True
+[120] M6-hwm-no-max api_sequence_plain seed=9 detected=False
+building M8-update-no-ab-write...
+[121] M8-update-no-ab-write update_app_memory_spec seed=0 detected=True
+[122] M8-update-no-ab-write update_app_memory_plain seed=0 detected=False
+[123] M8-update-no-ab-write update_app_memory_spec seed=1 detected=True
+[124] M8-update-no-ab-write update_app_memory_plain seed=1 detected=False
+[125] M8-update-no-ab-write update_app_memory_spec seed=2 detected=True
+[126] M8-update-no-ab-write update_app_memory_plain seed=2 detected=False
+[127] M8-update-no-ab-write update_app_memory_spec seed=3 detected=True
+[128] M8-update-no-ab-write update_app_memory_plain seed=3 detected=False
+[129] M8-update-no-ab-write update_app_memory_spec seed=4 detected=True
+[130] M8-update-no-ab-write update_app_memory_plain seed=4 detected=False
+[131] M8-update-no-ab-write update_app_memory_spec seed=5 detected=True
+[132] M8-update-no-ab-write update_app_memory_plain seed=5 detected=False
+[133] M8-update-no-ab-write update_app_memory_spec seed=6 detected=True
+[134] M8-update-no-ab-write update_app_memory_plain seed=6 detected=False
+[135] M8-update-no-ab-write update_app_memory_spec seed=7 detected=True
+[136] M8-update-no-ab-write update_app_memory_plain seed=7 detected=False
+[137] M8-update-no-ab-write update_app_memory_spec seed=8 detected=True
+[138] M8-update-no-ab-write update_app_memory_plain seed=8 detected=False
+[139] M8-update-no-ab-write update_app_memory_spec seed=9 detected=True
+[140] M8-update-no-ab-write update_app_memory_plain seed=9 detected=False
+[141] M8-update-no-ab-write api_sequence_spec seed=0 detected=True
+[142] M8-update-no-ab-write api_sequence_plain seed=0 detected=False
+[143] M8-update-no-ab-write api_sequence_spec seed=1 detected=True
+[144] M8-update-no-ab-write api_sequence_plain seed=1 detected=False
+[145] M8-update-no-ab-write api_sequence_spec seed=2 detected=True
+[146] M8-update-no-ab-write api_sequence_plain seed=2 detected=False
+[147] M8-update-no-ab-write api_sequence_spec seed=3 detected=True
+[148] M8-update-no-ab-write api_sequence_plain seed=3 detected=False
+[149] M8-update-no-ab-write api_sequence_spec seed=4 detected=True
+[150] M8-update-no-ab-write api_sequence_plain seed=4 detected=False
+[151] M8-update-no-ab-write api_sequence_spec seed=5 detected=True
+[152] M8-update-no-ab-write api_sequence_plain seed=5 detected=False
+[153] M8-update-no-ab-write api_sequence_spec seed=6 detected=True
+[154] M8-update-no-ab-write api_sequence_plain seed=6 detected=False
+[155] M8-update-no-ab-write api_sequence_spec seed=7 detected=True
+[156] M8-update-no-ab-write api_sequence_plain seed=7 detected=False
+[157] M8-update-no-ab-write api_sequence_spec seed=8 detected=True
+[158] M8-update-no-ab-write api_sequence_plain seed=8 detected=False
+[159] M8-update-no-ab-write api_sequence_spec seed=9 detected=True
+[160] M8-update-no-ab-write api_sequence_plain seed=9 detected=False
+
+=== DETECTION SUMMARY ===
+M2-space-flip                    l3             allocate_in_grant_region     spec 10/10  plain 0/10
+M3-drop-set-kernel-break         h2             allocate_in_grant_region     spec 10/10  plain 0/10
+M3-drop-set-kernel-break         h2             api_sequence                 spec 10/10  plain 0/10
+M4-align-mask                    l3             allocate_in_grant_region     spec 10/10  plain 0/10
+M6-hwm-no-max                    h2             add_shared_readwrite         spec 10/10  plain 0/10
+M6-hwm-no-max                    h2             api_sequence                 spec 10/10  plain 0/10
+M8-update-no-ab-write            h2             api_sequence                 spec 10/10  plain 0/10
+M8-update-no-ab-write            h2             update_app_memory            spec 10/10  plain 0/10
+
+results: /home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/results/h1_results_1792973425.json
+=== BATCH 2: E5b M7 sequence ===
+building M7-update-drop-hwm-check...
+[1] M7-update-drop-hwm-check update_app_memory_spec seed=0 detected=True
+[2] M7-update-drop-hwm-check update_app_memory_plain seed=0 detected=False
+[3] M7-update-drop-hwm-check update_app_memory_spec seed=1 detected=True
+[4] M7-update-drop-hwm-check update_app_memory_plain seed=1 detected=False
+[5] M7-update-drop-hwm-check update_app_memory_spec seed=2 detected=True
+[6] M7-update-drop-hwm-check update_app_memory_plain seed=2 detected=False
+[7] M7-update-drop-hwm-check update_app_memory_spec seed=3 detected=True
+[8] M7-update-drop-hwm-check update_app_memory_plain seed=3 detected=False
+[9] M7-update-drop-hwm-check update_app_memory_spec seed=4 detected=True
+[10] M7-update-drop-hwm-check update_app_memory_plain seed=4 detected=False
+[11] M7-update-drop-hwm-check update_app_memory_spec seed=5 detected=True
+[12] M7-update-drop-hwm-check update_app_memory_plain seed=5 detected=False
+[13] M7-update-drop-hwm-check update_app_memory_spec seed=6 detected=True
+[14] M7-update-drop-hwm-check update_app_memory_plain seed=6 detected=False
+[15] M7-update-drop-hwm-check update_app_memory_spec seed=7 detected=True
+[16] M7-update-drop-hwm-check update_app_memory_plain seed=7 detected=False
+[17] M7-update-drop-hwm-check update_app_memory_spec seed=8 detected=True
+[18] M7-update-drop-hwm-check update_app_memory_plain seed=8 detected=False
+[19] M7-update-drop-hwm-check update_app_memory_spec seed=9 detected=True
+[20] M7-update-drop-hwm-check update_app_memory_plain seed=9 detected=False
+[21] M7-update-drop-hwm-check api_sequence_spec seed=0 detected=True
+[22] M7-update-drop-hwm-check api_sequence_plain seed=0 detected=False
+[23] M7-update-drop-hwm-check api_sequence_spec seed=1 detected=True
+[24] M7-update-drop-hwm-check api_sequence_plain seed=1 detected=False
+[25] M7-update-drop-hwm-check api_sequence_spec seed=2 detected=True
+[26] M7-update-drop-hwm-check api_sequence_plain seed=2 detected=False
+[27] M7-update-drop-hwm-check api_sequence_spec seed=3 detected=True
+[28] M7-update-drop-hwm-check api_sequence_plain seed=3 detected=False
+[29] M7-update-drop-hwm-check api_sequence_spec seed=4 detected=True
+[30] M7-update-drop-hwm-check api_sequence_plain seed=4 detected=False
+[31] M7-update-drop-hwm-check api_sequence_spec seed=5 detected=True
+[32] M7-update-drop-hwm-check api_sequence_plain seed=5 detected=False
+[33] M7-update-drop-hwm-check api_sequence_spec seed=6 detected=True
+[34] M7-update-drop-hwm-check api_sequence_plain seed=6 detected=False
+[35] M7-update-drop-hwm-check api_sequence_spec seed=7 detected=True
+[36] M7-update-drop-hwm-check api_sequence_plain seed=7 detected=False
+[37] M7-update-drop-hwm-check api_sequence_spec seed=8 detected=True
+[38] M7-update-drop-hwm-check api_sequence_plain seed=8 detected=False
+[39] M7-update-drop-hwm-check api_sequence_spec seed=9 detected=True
+[40] M7-update-drop-hwm-check api_sequence_plain seed=9 detected=False
+
+=== DETECTION SUMMARY ===
+M7-update-drop-hwm-check         underflow      api_sequence                 spec 10/10  plain 0/10
+M7-update-drop-hwm-check         underflow      update_app_memory            spec 10/10  plain 0/10
+
+results: /home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/results/h1_results_1792973672.json
+=== BATCH 3: E2 ablation L1/L2/L3 ===
+building M1-ogte-lte...
+[1] M1-ogte-lte allocate_in_grant_region_spec lvl=1 seed=0 detected=False
+[2] M1-ogte-lte allocate_in_grant_region_spec lvl=2 seed=0 detected=False
+[3] M1-ogte-lte allocate_in_grant_region_spec lvl=3 seed=0 detected=False
+[4] M1-ogte-lte allocate_in_grant_region_spec lvl=1 seed=1 detected=False
+[5] M1-ogte-lte allocate_in_grant_region_spec lvl=2 seed=1 detected=False
+[6] M1-ogte-lte allocate_in_grant_region_spec lvl=3 seed=1 detected=False
+[7] M1-ogte-lte allocate_in_grant_region_spec lvl=1 seed=2 detected=False
+[8] M1-ogte-lte allocate_in_grant_region_spec lvl=2 seed=2 detected=False
+[9] M1-ogte-lte allocate_in_grant_region_spec lvl=3 seed=2 detected=False
+building M2-space-flip...
+[10] M2-space-flip allocate_in_grant_region_spec lvl=1 seed=0 detected=False
+[11] M2-space-flip allocate_in_grant_region_spec lvl=2 seed=0 detected=False
+[12] M2-space-flip allocate_in_grant_region_spec lvl=3 seed=0 detected=True
+[13] M2-space-flip allocate_in_grant_region_spec lvl=1 seed=1 detected=False
+[14] M2-space-flip allocate_in_grant_region_spec lvl=2 seed=1 detected=False
+[15] M2-space-flip allocate_in_grant_region_spec lvl=3 seed=1 detected=True
+[16] M2-space-flip allocate_in_grant_region_spec lvl=1 seed=2 detected=False
+[17] M2-space-flip allocate_in_grant_region_spec lvl=2 seed=2 detected=False
+[18] M2-space-flip allocate_in_grant_region_spec lvl=3 seed=2 detected=True
+building M3-drop-set-kernel-break...
+[19] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=1 seed=0 detected=False
+[20] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=2 seed=0 detected=False
+[21] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=3 seed=0 detected=True
+[22] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=1 seed=1 detected=False
+[23] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=2 seed=1 detected=False
+[24] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=3 seed=1 detected=True
+[25] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=1 seed=2 detected=False
+[26] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=2 seed=2 detected=False
+[27] M3-drop-set-kernel-break allocate_in_grant_region_spec lvl=3 seed=2 detected=True
+[28] M3-drop-set-kernel-break api_sequence_spec lvl=1 seed=0 detected=False
+[29] M3-drop-set-kernel-break api_sequence_spec lvl=2 seed=0 detected=False
+[30] M3-drop-set-kernel-break api_sequence_spec lvl=3 seed=0 detected=True
+[31] M3-drop-set-kernel-break api_sequence_spec lvl=1 seed=1 detected=False
+[32] M3-drop-set-kernel-break api_sequence_spec lvl=2 seed=1 detected=False
+[33] M3-drop-set-kernel-break api_sequence_spec lvl=3 seed=1 detected=True
+[34] M3-drop-set-kernel-break api_sequence_spec lvl=1 seed=2 detected=False
+[35] M3-drop-set-kernel-break api_sequence_spec lvl=2 seed=2 detected=False
+[36] M3-drop-set-kernel-break api_sequence_spec lvl=3 seed=2 detected=True
+building M4-align-mask...
+[37] M4-align-mask allocate_in_grant_region_spec lvl=1 seed=0 detected=False
+[38] M4-align-mask allocate_in_grant_region_spec lvl=2 seed=0 detected=False
+[39] M4-align-mask allocate_in_grant_region_spec lvl=3 seed=0 detected=True
+[40] M4-align-mask allocate_in_grant_region_spec lvl=1 seed=1 detected=False
+[41] M4-align-mask allocate_in_grant_region_spec lvl=2 seed=1 detected=False
+[42] M4-align-mask allocate_in_grant_region_spec lvl=3 seed=1 detected=True
+[43] M4-align-mask allocate_in_grant_region_spec lvl=1 seed=2 detected=False
+[44] M4-align-mask allocate_in_grant_region_spec lvl=2 seed=2 detected=False
+[45] M4-align-mask allocate_in_grant_region_spec lvl=3 seed=2 detected=True
+building M5-align-no-min...
+[46] M5-align-no-min allocate_in_grant_region_spec lvl=1 seed=0 detected=True
+[47] M5-align-no-min allocate_in_grant_region_spec lvl=2 seed=0 detected=True
+[48] M5-align-no-min allocate_in_grant_region_spec lvl=3 seed=0 detected=True
+[49] M5-align-no-min allocate_in_grant_region_spec lvl=1 seed=1 detected=True
+[50] M5-align-no-min allocate_in_grant_region_spec lvl=2 seed=1 detected=True
+[51] M5-align-no-min allocate_in_grant_region_spec lvl=3 seed=1 detected=True
+[52] M5-align-no-min allocate_in_grant_region_spec lvl=1 seed=2 detected=True
+[53] M5-align-no-min allocate_in_grant_region_spec lvl=2 seed=2 detected=True
+[54] M5-align-no-min allocate_in_grant_region_spec lvl=3 seed=2 detected=True
+building M6-hwm-no-max...
+[55] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=1 seed=0 detected=False
+[56] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=2 seed=0 detected=False
+[57] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=3 seed=0 detected=True
+[58] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=1 seed=1 detected=False
+[59] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=2 seed=1 detected=False
+[60] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=3 seed=1 detected=True
+[61] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=1 seed=2 detected=False
+[62] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=2 seed=2 detected=False
+[63] M6-hwm-no-max add_shared_readwrite_buffer_spec lvl=3 seed=2 detected=True
+[64] M6-hwm-no-max api_sequence_spec lvl=1 seed=0 detected=False
+[65] M6-hwm-no-max api_sequence_spec lvl=2 seed=0 detected=False
+[66] M6-hwm-no-max api_sequence_spec lvl=3 seed=0 detected=True
+[67] M6-hwm-no-max api_sequence_spec lvl=1 seed=1 detected=False
+[68] M6-hwm-no-max api_sequence_spec lvl=2 seed=1 detected=False
+[69] M6-hwm-no-max api_sequence_spec lvl=3 seed=1 detected=True
+[70] M6-hwm-no-max api_sequence_spec lvl=1 seed=2 detected=False
+[71] M6-hwm-no-max api_sequence_spec lvl=2 seed=2 detected=False
+[72] M6-hwm-no-max api_sequence_spec lvl=3 seed=2 detected=True
+building M7-update-drop-hwm-check...
+[73] M7-update-drop-hwm-check update_app_memory_spec lvl=1 seed=0 detected=True
+[74] M7-update-drop-hwm-check update_app_memory_spec lvl=2 seed=0 detected=True
+[75] M7-update-drop-hwm-check update_app_memory_spec lvl=3 seed=0 detected=True
+[76] M7-update-drop-hwm-check update_app_memory_spec lvl=1 seed=1 detected=True
+[77] M7-update-drop-hwm-check update_app_memory_spec lvl=2 seed=1 detected=True
+[78] M7-update-drop-hwm-check update_app_memory_spec lvl=3 seed=1 detected=True
+[79] M7-update-drop-hwm-check update_app_memory_spec lvl=1 seed=2 detected=True
+[80] M7-update-drop-hwm-check update_app_memory_spec lvl=2 seed=2 detected=True
+[81] M7-update-drop-hwm-check update_app_memory_spec lvl=3 seed=2 detected=True
+[82] M7-update-drop-hwm-check api_sequence_spec lvl=1 seed=0 detected=True
+[83] M7-update-drop-hwm-check api_sequence_spec lvl=2 seed=0 detected=True
+[84] M7-update-drop-hwm-check api_sequence_spec lvl=3 seed=0 detected=True
+[85] M7-update-drop-hwm-check api_sequence_spec lvl=1 seed=1 detected=True
+[86] M7-update-drop-hwm-check api_sequence_spec lvl=2 seed=1 detected=True
+[87] M7-update-drop-hwm-check api_sequence_spec lvl=3 seed=1 detected=True
+[88] M7-update-drop-hwm-check api_sequence_spec lvl=1 seed=2 detected=True
+[89] M7-update-drop-hwm-check api_sequence_spec lvl=2 seed=2 detected=True
+[90] M7-update-drop-hwm-check api_sequence_spec lvl=3 seed=2 detected=True
+building M8-update-no-ab-write...
+[91] M8-update-no-ab-write update_app_memory_spec lvl=1 seed=0 detected=False
+[92] M8-update-no-ab-write update_app_memory_spec lvl=2 seed=0 detected=False
+[93] M8-update-no-ab-write update_app_memory_spec lvl=3 seed=0 detected=True
+[94] M8-update-no-ab-write update_app_memory_spec lvl=1 seed=1 detected=False
+[95] M8-update-no-ab-write update_app_memory_spec lvl=2 seed=1 detected=False
+[96] M8-update-no-ab-write update_app_memory_spec lvl=3 seed=1 detected=True
+[97] M8-update-no-ab-write update_app_memory_spec lvl=1 seed=2 detected=False
+[98] M8-update-no-ab-write update_app_memory_spec lvl=2 seed=2 detected=False
+[99] M8-update-no-ab-write update_app_memory_spec lvl=3 seed=2 detected=True
+[100] M8-update-no-ab-write api_sequence_spec lvl=1 seed=0 detected=False
+[101] M8-update-no-ab-write api_sequence_spec lvl=2 seed=0 detected=False
+[102] M8-update-no-ab-write api_sequence_spec lvl=3 seed=0 detected=True
+[103] M8-update-no-ab-write api_sequence_spec lvl=1 seed=1 detected=False
+[104] M8-update-no-ab-write api_sequence_spec lvl=2 seed=1 detected=False
+[105] M8-update-no-ab-write api_sequence_spec lvl=3 seed=1 detected=True
+[106] M8-update-no-ab-write api_sequence_spec lvl=1 seed=2 detected=False
+[107] M8-update-no-ab-write api_sequence_spec lvl=2 seed=2 detected=False
+[108] M8-update-no-ab-write api_sequence_spec lvl=3 seed=2 detected=True
+building M9-update-drop-oom-recheck...
+[109] M9-update-drop-oom-recheck update_app_memory_spec lvl=1 seed=0 detected=False
+[110] M9-update-drop-oom-recheck update_app_memory_spec lvl=2 seed=0 detected=False
+[111] M9-update-drop-oom-recheck update_app_memory_spec lvl=3 seed=0 detected=False
+[112] M9-update-drop-oom-recheck update_app_memory_spec lvl=1 seed=1 detected=False
+[113] M9-update-drop-oom-recheck update_app_memory_spec lvl=2 seed=1 detected=False
+[114] M9-update-drop-oom-recheck update_app_memory_spec lvl=3 seed=1 detected=False
+[115] M9-update-drop-oom-recheck update_app_memory_spec lvl=1 seed=2 detected=False
+[116] M9-update-drop-oom-recheck update_app_memory_spec lvl=2 seed=2 detected=False
+[117] M9-update-drop-oom-recheck update_app_memory_spec lvl=3 seed=2 detected=False
+
+=== DETECTION SUMMARY ===
+M1-ogte-lte                      equiv      L1  allocate_in_grant_region     spec 0/3  plain 0/0
+M1-ogte-lte                      equiv      L2  allocate_in_grant_region     spec 0/3  plain 0/0
+M1-ogte-lte                      equiv      L3  allocate_in_grant_region     spec 0/3  plain 0/0
+M2-space-flip                    l3         L1  allocate_in_grant_region     spec 0/3  plain 0/0
+M2-space-flip                    l3         L2  allocate_in_grant_region     spec 0/3  plain 0/0
+M2-space-flip                    l3         L3  allocate_in_grant_region     spec 3/3  plain 0/0
+M3-drop-set-kernel-break         h2         L1  allocate_in_grant_region     spec 0/3  plain 0/0
+M3-drop-set-kernel-break         h2         L2  allocate_in_grant_region     spec 0/3  plain 0/0
+M3-drop-set-kernel-break         h2         L3  allocate_in_grant_region     spec 3/3  plain 0/0
+M3-drop-set-kernel-break         h2         L1  api_sequence                 spec 0/3  plain 0/0
+M3-drop-set-kernel-break         h2         L2  api_sequence                 spec 0/3  plain 0/0
+M3-drop-set-kernel-break         h2         L3  api_sequence                 spec 3/3  plain 0/0
+M4-align-mask                    l3         L1  allocate_in_grant_region     spec 0/3  plain 0/0
+M4-align-mask                    l3         L2  allocate_in_grant_region     spec 0/3  plain 0/0
+M4-align-mask                    l3         L3  allocate_in_grant_region     spec 3/3  plain 0/0
+M5-align-no-min                  panic      L1  allocate_in_grant_region     spec 3/3  plain 0/0
+M5-align-no-min                  panic      L2  allocate_in_grant_region     spec 3/3  plain 0/0
+M5-align-no-min                  panic      L3  allocate_in_grant_region     spec 3/3  plain 0/0
+M6-hwm-no-max                    h2         L1  add_shared_readwrite         spec 0/3  plain 0/0
+M6-hwm-no-max                    h2         L2  add_shared_readwrite         spec 0/3  plain 0/0
+M6-hwm-no-max                    h2         L3  add_shared_readwrite         spec 3/3  plain 0/0
+M6-hwm-no-max                    h2         L1  api_sequence                 spec 0/3  plain 0/0
+M6-hwm-no-max                    h2         L2  api_sequence                 spec 0/3  plain 0/0
+M6-hwm-no-max                    h2         L3  api_sequence                 spec 3/3  plain 0/0
+M7-update-drop-hwm-check         underflow  L1  api_sequence                 spec 3/3  plain 0/0
+M7-update-drop-hwm-check         underflow  L2  api_sequence                 spec 3/3  plain 0/0
+M7-update-drop-hwm-check         underflow  L3  api_sequence                 spec 3/3  plain 0/0
+M7-update-drop-hwm-check         underflow  L1  update_app_memory            spec 3/3  plain 0/0
+M7-update-drop-hwm-check         underflow  L2  update_app_memory            spec 3/3  plain 0/0
+M7-update-drop-hwm-check         underflow  L3  update_app_memory            spec 3/3  plain 0/0
+M8-update-no-ab-write            h2         L1  api_sequence                 spec 0/3  plain 0/0
+M8-update-no-ab-write            h2         L2  api_sequence                 spec 0/3  plain 0/0
+M8-update-no-ab-write            h2         L3  api_sequence                 spec 3/3  plain 0/0
+M8-update-no-ab-write            h2         L1  update_app_memory            spec 0/3  plain 0/0
+M8-update-no-ab-write            h2         L2  update_app_memory            spec 0/3  plain 0/0
+M8-update-no-ab-write            h2         L3  update_app_memory            spec 3/3  plain 0/0
+M9-update-drop-oom-recheck       equiv      L1  update_app_memory            spec 0/3  plain 0/0
+M9-update-drop-oom-recheck       equiv      L2  update_app_memory            spec 0/3  plain 0/0
+M9-update-drop-oom-recheck       equiv      L3  update_app_memory            spec 0/3  plain 0/0
+
+results: /home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/results/h1_results_1792973868.json
+=== BATCH 4: E4 mpu mutants ===
+building MP1-alloc-drop-zero-check...
+Traceback (most recent call last):
+  File "/home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/tools/run_mutants.py", line 260, in <module>
+    main()
+  File "/home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/tools/run_mutants.py", line 227, in main
+    apply_mutant(key, patches)
+  File "/home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/tools/run_mutants.py", line 119, in apply_mutant
+    i = src.index(anchor)  # first occurrence of the anchor fn
+        ^^^^^^^^^^^^^^^^^
+ValueError: substring not found
+=== ALL BATCHES DONE ===

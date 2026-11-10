@@ -1,0 +1,52 @@
+building MP1-alloc-drop-zero-check...
+[1] MP1-alloc-drop-zero-check mpu_default_spec seed=0 detected=True
+[2] MP1-alloc-drop-zero-check mpu_default_plain seed=0 detected=False
+[3] MP1-alloc-drop-zero-check mpu_default_spec seed=1 detected=True
+[4] MP1-alloc-drop-zero-check mpu_default_plain seed=1 detected=False
+[5] MP1-alloc-drop-zero-check mpu_default_spec seed=2 detected=True
+[6] MP1-alloc-drop-zero-check mpu_default_plain seed=2 detected=False
+[7] MP1-alloc-drop-zero-check mpu_default_spec seed=3 detected=True
+[8] MP1-alloc-drop-zero-check mpu_default_plain seed=3 detected=False
+[9] MP1-alloc-drop-zero-check mpu_default_spec seed=4 detected=True
+[10] MP1-alloc-drop-zero-check mpu_default_plain seed=4 detected=False
+building MP2-alloc-rnum-off...
+[11] MP2-alloc-rnum-off mpu_default_spec seed=0 detected=False
+[12] MP2-alloc-rnum-off mpu_default_plain seed=0 detected=False
+[13] MP2-alloc-rnum-off mpu_default_spec seed=1 detected=False
+[14] MP2-alloc-rnum-off mpu_default_plain seed=1 detected=False
+[15] MP2-alloc-rnum-off mpu_default_spec seed=2 detected=False
+[16] MP2-alloc-rnum-off mpu_default_plain seed=2 detected=False
+[17] MP2-alloc-rnum-off mpu_default_spec seed=3 detected=False
+[18] MP2-alloc-rnum-off mpu_default_plain seed=3 detected=False
+[19] MP2-alloc-rnum-off mpu_default_spec seed=4 detected=False
+[20] MP2-alloc-rnum-off mpu_default_plain seed=4 detected=False
+building MP3-create-start-off...
+[21] MP3-create-start-off mpu_default_spec seed=0 detected=True
+[22] MP3-create-start-off mpu_default_plain seed=0 detected=False
+[23] MP3-create-start-off mpu_default_spec seed=1 detected=True
+[24] MP3-create-start-off mpu_default_plain seed=1 detected=False
+[25] MP3-create-start-off mpu_default_spec seed=2 detected=True
+[26] MP3-create-start-off mpu_default_plain seed=2 detected=False
+[27] MP3-create-start-off mpu_default_spec seed=3 detected=True
+[28] MP3-create-start-off mpu_default_plain seed=3 detected=False
+[29] MP3-create-start-off mpu_default_spec seed=4 detected=True
+[30] MP3-create-start-off mpu_default_plain seed=4 detected=False
+building MP4-update-strict...
+[31] MP4-update-strict mpu_default_spec seed=0 detected=False
+[32] MP4-update-strict mpu_default_plain seed=0 detected=False
+[33] MP4-update-strict mpu_default_spec seed=1 detected=False
+[34] MP4-update-strict mpu_default_plain seed=1 detected=False
+[35] MP4-update-strict mpu_default_spec seed=2 detected=False
+[36] MP4-update-strict mpu_default_plain seed=2 detected=False
+[37] MP4-update-strict mpu_default_spec seed=3 detected=False
+[38] MP4-update-strict mpu_default_plain seed=3 detected=False
+[39] MP4-update-strict mpu_default_spec seed=4 detected=False
+[40] MP4-update-strict mpu_default_plain seed=4 detected=False
+
+=== DETECTION SUMMARY ===
+MP1-alloc-drop-zero-check        l3             mpu_default                  spec 5/5  plain 0/5
+MP2-alloc-rnum-off               blind          mpu_default                  spec 0/5  plain 0/5
+MP3-create-start-off             l3             mpu_default                  spec 5/5  plain 0/5
+MP4-update-strict                equiv          mpu_default                  spec 0/5  plain 0/5
+
+results: /home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/results/h1_results_1792974048.json
