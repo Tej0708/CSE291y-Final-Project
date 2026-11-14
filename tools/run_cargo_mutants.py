@@ -11,17 +11,9 @@ import argparse, json, os, re, subprocess, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-REPO = Path("/home/linux/ieng6/students/985/xuz077/rust/tock-flux")
+from _env import REPO, FUZZ, RESULTS, RELEASE_DIR, ENV
+
 ALLOC = REPO / "kernel/src/allocator.rs"
-FUZZ = REPO / "fuzz"
-RESULTS = Path("/home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/results")
-TOOLCHAIN_BIN = Path.home() / ".rustup/toolchains/nightly-2025-03-14-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin"
-ENV = {
-    **os.environ,
-    "PATH": f"{Path.home()}/.cargo/bin:{os.environ.get('PATH','')}",
-    "CARGO_TARGET_DIR": "/tmp/fuzz-target",
-    "AR": str(TOOLCHAIN_BIN / "llvm-ar"),
-}
 
 TARGET_BINS = {
     "allocate_in_grant_region": ("allocate_in_grant_region_spec", "allocate_in_grant_region_plain"),
@@ -91,7 +83,7 @@ def build_bins(retries=5):
 
 
 def run_one(bin_name, budget, seed, outdir):
-    cmd = [str(Path(ENV["CARGO_TARGET_DIR"]) / "x86_64-unknown-linux-gnu/release" / bin_name),
+    cmd = [str(RELEASE_DIR / bin_name),
            f"-artifact_prefix={outdir}/", f"-max_total_time={budget}", f"-seed={seed}",
            "-rss_limit_mb=4096"]
     try:

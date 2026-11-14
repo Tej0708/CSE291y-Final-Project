@@ -11,7 +11,8 @@ Usage: coverage_compare.py [--cov-budget 30]
 import argparse, json, re, subprocess, time
 from pathlib import Path
 
-REL = "/tmp/fuzz-target/x86_64-unknown-linux-gnu/release"
+from _env import RELEASE_DIR, RESULTS
+
 PAIRS = [
     ("allocate_in_grant_region", "allocate_in_grant_region_spec", "allocate_in_grant_region_plain"),
     ("in_app_ram_memory", "in_app_ram_memory_spec", "in_app_ram_memory_plain"),
@@ -20,11 +21,10 @@ PAIRS = [
     ("update_app_memory", "update_app_memory_spec", "update_app_memory_plain"),
     ("api_sequence", "api_sequence_spec", "api_sequence_plain"),
 ]
-RESULTS = Path("/home/linux/ieng6/students/985/xuz077/rust/spec-fuzz/results")
 
 
 def cov_of(bin_name, budget, seed=42):
-    cmd = [f"{REL}/{bin_name}", "-max_total_time={}".format(budget), f"-seed={seed}",
+    cmd = [str(RELEASE_DIR / bin_name), "-max_total_time={}".format(budget), f"-seed={seed}",
            "-rss_limit_mb=4096"]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=budget + 120)
     covs = re.findall(r"cov:\s+(\d+)", r.stdout + r.stderr)
