@@ -88,6 +88,9 @@ TARGETS = {
     "update_app_memory": ("update_app_memory_spec", "update_app_memory_plain", ["M7", "M8", "M9"]),
     "mpu_default": ("mpu_default_spec", "mpu_default_plain", ["MP"]),
     "api_sequence": ("api_sequence_spec", "api_sequence_plain", ["M3", "M6", "M7", "M8"]),
+    "next_available_ipc_idx": ("next_available_ipc_idx_spec", "next_available_ipc_idx_plain", ["MNI", "MIPC"]),
+    "allocate_ipc_region": ("allocate_ipc_region_spec", "allocate_ipc_region_plain", ["MIPC"]),
+    "get_app_breaks": ("get_app_breaks_spec", "get_app_breaks_plain", ["MGAB"]),
 }
 
 

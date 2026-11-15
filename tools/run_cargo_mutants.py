@@ -22,6 +22,9 @@ TARGET_BINS = {
     "add_shared_readwrite": ("add_shared_readwrite_buffer_spec", "add_shared_readwrite_buffer_plain"),
     "update_app_memory": ("update_app_memory_spec", "update_app_memory_plain"),
     "api_sequence": ("api_sequence_spec", "api_sequence_plain"),
+    "next_available_ipc_idx": ("next_available_ipc_idx_spec", "next_available_ipc_idx_plain"),
+    "allocate_ipc_region": ("allocate_ipc_region_spec", "allocate_ipc_region_plain"),
+    "get_app_breaks": ("get_app_breaks_spec", "get_app_breaks_plain"),
 }
 
 # diff-header function name -> relevant targets (None = skip: unreachable)
@@ -41,14 +44,14 @@ FN_TARGETS = {
     "allocate_custom_grant": None,
     "allocate_in_grant_region_internal": ["allocate_in_grant_region", "api_sequence"],
     "set_kernel_break": ["allocate_in_grant_region", "api_sequence"],
-    "next_available_ipc_idx": ["api_sequence"],
-    "any_overlaps": ["api_sequence"],
-    "overlaps_app_block": ["api_sequence"],
-    "allocate_ipc_region": ["api_sequence"],
+    "next_available_ipc_idx": ["api_sequence", "next_available_ipc_idx", "allocate_ipc_region"],
+    "any_overlaps": ["api_sequence", "allocate_ipc_region"],
+    "overlaps_app_block": ["api_sequence", "allocate_ipc_region"],
+    "allocate_ipc_region": ["api_sequence", "allocate_ipc_region"],
     "get_flash_region": ["allocate_in_grant_region", "update_app_memory"],
     "get_ram_regions": ["allocate_in_grant_region", "update_app_memory"],
-    "get_app_breaks": ["allocate_in_grant_region", "update_app_memory"],
-    "allocate_app_memory": ["allocate_in_grant_region", "update_app_memory"],
+    "get_app_breaks": ["allocate_in_grant_region", "update_app_memory", "get_app_breaks"],
+    "allocate_app_memory": ["allocate_in_grant_region", "update_app_memory", "get_app_breaks"],
     "update_app_memory": ["update_app_memory", "api_sequence"],
     "fmt": None,
 }
@@ -114,7 +117,7 @@ def main():
 
     list_file = RESULTS / "cargo_mutants_list.json"
     if not list_file.exists():
-        r = subprocess.run(["cargo", "mutants", "--list", "--json", "--file", "kernel/src/allocator.rs"],
+        r = subprocess.run(["cargo", "mutants", "--list", "--json", "--diff", "--file", "kernel/src/allocator.rs"],
                            cwd=REPO, env=ENV, capture_output=True, text=True, timeout=600)
         list_file.write_text(r.stdout)
     mutants = json.loads(list_file.read_text())

@@ -154,4 +154,48 @@ test = false
 doc = false
 bench = false
 
+# Added targets: IPC region allocation + constructor break builder
+
+[[bin]]
+name = "next_available_ipc_idx_spec"
+path = "fuzz_targets/next_available_ipc_idx_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "next_available_ipc_idx_plain"
+path = "fuzz_targets/next_available_ipc_idx_plain.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "allocate_ipc_region_spec"
+path = "fuzz_targets/allocate_ipc_region_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "allocate_ipc_region_plain"
+path = "fuzz_targets/allocate_ipc_region_plain.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "get_app_breaks_spec"
+path = "fuzz_targets/get_app_breaks_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "get_app_breaks_plain"
+path = "fuzz_targets/get_app_breaks_plain.rs"
+test = false
+doc = false
+bench = false
+
 [workspace]
