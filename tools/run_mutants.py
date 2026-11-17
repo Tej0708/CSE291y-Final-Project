@@ -14,73 +14,16 @@ Usage: python3 run_mutants.py [--budget 30] [--seeds 5] [--jobs 10]
                               [--only M2,M3|original] [--arms spec]
                               [--levels 1,2,3]
 """
-import argparse, json, os, subprocess, time
+import argparse, json, os, subprocess, tempfile, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from _env import REPO, FUZZ, RESULTS, HOST, RELEASE_DIR, ENV
+from _env import REPO, FUZZ, RESULTS, RELEASE_DIR, ENV, TOOLCHAIN
 
 SOURCES = {
     "allocator": REPO / "kernel/src/allocator.rs",
     "mpu": REPO / "kernel/src/platform/mpu.rs",
 }
-
-# ---- mutant definitions: (name, category, source-file, patches) ----
-# patch: (old, new) replaces the unique occurrence, or ("@anchor", old, new)
-# replaces the FIRST occurrence of old after the anchor (for text that
-# appears in several functions).
-# category: panic | underflow | l3 | h2 | equiv | blind
-MUTANTS = [
-    ("M1-ogte-lte", "equiv", "allocator", [
-        ("if new_break < self.app_break() || new_break >= self.kernel_break() {",
-         "if new_break <= self.app_break() || new_break >= self.kernel_break() {"),
-    ]),
-    ("M2-space-flip", "l3", "allocator", [
-        ("if new_break < self.app_break() || new_break >= self.kernel_break() {",
-         "if new_break < self.app_break() || new_break > self.kernel_break() {"),
-    ]),
-    ("M3-drop-set-kernel-break", "h2", "allocator", [
-        ("            // We always allocate down, so we must lower the\n            // kernel_memory_break.\n            self.set_kernel_break(new_break);",
-         ""),
-    ]),
-    ("M4-align-mask", "l3", "allocator", [
-        ("let alignment_mask = !(align - 1);", "let alignment_mask = !align;"),
-    ]),
-    ("M5-align-no-min", "panic", "allocator", [
-        ("let align = max_usize(align, 2);", "let align = align;"),
-    ]),
-    ("M6-hwm-no-max", "h2", "allocator", [
-        ("            let new_water_mark = max_ptr(self.breaks.high_water_mark, buf_end_addr);\n            self.breaks.high_water_mark = new_water_mark;\n            Ok(())\n        } else {\n            Err(())",
-         "            let new_water_mark = buf_end_addr;\n            self.breaks.high_water_mark = new_water_mark;\n            Ok(())\n        } else {\n            Err(())"),
-    ]),
-    ("M7-update-drop-hwm-check", "underflow", "allocator", [
-        ("            || new_app_break.as_usize() < high_water_mark.as_usize()", ""),
-    ]),
-    ("M8-update-no-ab-write", "h2", "allocator", [
-        ("        let old_break = self.breaks.app_break;\n        self.breaks.app_break = FluxPtrU8::from(new_app_break);",
-         "        let old_break = self.breaks.app_break;"),
-    ]),
-    ("M9-update-drop-oom-recheck", "equiv", "allocator", [
-        ("        if new_app_break > kernel_break.as_usize() {\n            return Err(Error::OutOfMemory);\n        }", ""),
-    ]),
-    # ---- E4: mpu.rs RegionDescriptor impl mutants ----
-    ("MP1-alloc-drop-zero-check", "l3", "mpu", [
-        ("@fn allocate_regions", "if region_size > available_size || region_size == 0 {",
-         "if region_size > available_size {"),
-    ]),
-    ("MP2-alloc-rnum-off", "blind", "mpu", [
-        ("@fn allocate_regions", "region_number: max_region_number - 1,",
-         "region_number: max_region_number,"),
-    ]),
-    ("MP3-create-start-off", "l3", "mpu", [
-        ("start: Some(start),\n            size: Some(size),",
-         "start: Some(start.wrapping_add(1)),\n            size: Some(size),"),
-    ]),
-    ("MP4-update-strict", "equiv", "mpu", [
-        ("@fn update_regions", "if region_size > available_size || region_size == 0 {",
-         "if region_size >= available_size || region_size == 0 {"),
-    ]),
-]
 
 TARGETS = {
     "allocate_in_grant_region": ("allocate_in_grant_region_spec", "allocate_in_grant_region_plain", ["M1", "M2", "M3", "M4", "M5"]),
@@ -92,6 +35,17 @@ TARGETS = {
     "allocate_ipc_region": ("allocate_ipc_region_spec", "allocate_ipc_region_plain", ["MIPC"]),
     "get_app_breaks": ("get_app_breaks_spec", "get_app_breaks_plain", ["MGAB"]),
 }
+
+
+def load_mutants():
+    source = Path(__file__).resolve().with_name("mutants.rs")
+    with tempfile.TemporaryDirectory(prefix="spec-fuzz-mutants-") as tmp:
+        catalog = Path(tmp) / "mutants"
+        subprocess.run(
+            ["rustc", f"+{TOOLCHAIN}", "--edition=2021", str(source), "-o", str(catalog)],
+            env=ENV, check=True,
+        )
+        return json.loads(subprocess.check_output([str(catalog)]))
 
 
 def write_source(key, text):
@@ -167,10 +121,12 @@ def main():
     ap.add_argument("--levels", default="", help="comma list of FUZZ_ORACLE_LEVEL values; empty = default env")
     args = ap.parse_args()
 
+    only = args.only.split(",")
+    do_original = not args.only or "original" in args.only
+    mutants = [] if only == ["original"] else load_mutants()
+    selected = [m for m in mutants if not args.only or any(o in m[0] for o in only)]
     RESULTS.mkdir(parents=True, exist_ok=True)
     baselines = {k: read_source(k) for k in SOURCES}
-    selected = [m for m in MUTANTS if not args.only or any(o in m[0] for o in args.only.split(","))]
-    do_original = not args.only or "original" in args.only
     arms = [a.strip() for a in args.arms.split(",") if a.strip()]
     levels = [int(x) for x in args.levels.split(",") if x.strip()] or [None]
     outdir = RESULTS / "artifacts"

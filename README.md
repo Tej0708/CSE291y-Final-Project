@@ -37,6 +37,7 @@ census/
 tools/                 experiment tooling (Python, stdlib only)
   spec_census.py       extracts & classifies every Flux attribute → census.csv
   run_mutants.py       hand-written mutant experiment driver (build-then-run per mutant)
+  mutants.rs           hand-written mutant definitions (loaded by run_mutants.py)
   run_cargo_mutants.py blind cargo-mutants experiment driver
   coverage_compare.py  spec-vs-plain coverage comparison
   translate.py         minimal spec→harness translator (E2)
@@ -70,6 +71,11 @@ $CARGO_TARGET_DIR/x86_64-unknown-linux-gnu/release/allocate_in_grant_region_spec
 Toolchain: nightly-2025-03-14 (pinned by tock-flux's rust-toolchain.toml);
 `cargo-fuzz` 0.13+, `cargo-mutants` 27+ for the blind set. Full reproduction
 commands for every experiment are in `docs/REPORT.md` §9.
+
+To add a hand-written mutant, edit [`tools/mutants.rs`](tools/mutants.rs).
+Each patch is `(anchor, old, new)`: use an empty anchor for a unique match or
+a nonempty anchor to replace the first match after it. The Python runner
+compiles and reads the catalog automatically; the run command is unchanged.
 
 ## Host quirks we hit (save yourself the debugging)
 
