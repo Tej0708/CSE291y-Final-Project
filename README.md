@@ -55,31 +55,245 @@ results/               raw result JSONs + summary logs (no crash artifacts)
   README.md            what each file is
 ```
 
-## Quick start
+## Running everything
+
+The commands below were verified on macOS (Apple Silicon) and match the
+original Linux x86_64 setup. Durations are approximate and scale with
+`--jobs` and the number of CPU cores.
+
+### 1. Install the Rust toolchain and tools (one time)
 
 ```bash
-# inside a tock-flux checkout (branch: the Flux-verified TickTock sources):
-#   1. copy fuzz/ to <tock-flux>/fuzz
-#   2. apply kernel-patch/README.md diffs (shim + 3 visibility changes + workspace exclude)
+# rustup, without a default toolchain; the tock checkout pins its own
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain none
 export PATH="$HOME/.cargo/bin:$PATH"
-export CARGO_TARGET_DIR=/tmp/fuzz-target        # local disk!
-export AR=<toolchain>/lib/rustlib/x86_64-unknown-linux-gnu/bin/llvm-ar
 
-cd fuzz && cargo fuzz build --sanitizer none
-$CARGO_TARGET_DIR/x86_64-unknown-linux-gnu/release/allocate_in_grant_region_spec -max_total_time=30
+# Fuzzing (required) and the blind mutation experiment (optional).
+# Newer releases need rustc >= 1.88, so pin these exact versions.
+cargo +nightly-2025-03-14 install cargo-fuzz --version 0.13.1 --locked
+cargo +nightly-2025-03-14 install cargo-mutants --version 26.0.0 --locked
 ```
 
-Toolchain: nightly-2025-03-14 (pinned by tock-flux's rust-toolchain.toml);
-`cargo-fuzz` 0.13+, `cargo-mutants` 27+ for the blind set. Full reproduction
-commands for every experiment are in `docs/REPORT.md` §9.
+`nightly-2025-03-14` is installed automatically the first time you run
+`rustc` or `cargo` inside the tock checkout. Outside that directory there is
+no default toolchain, so plain `cargo install ...` fails with "rustup could
+not choose a version of cargo"; always pass `+nightly-2025-03-14` there.
 
-To add a hand-written mutant, edit [`tools/mutants.rs`](tools/mutants.rs).
-Each patch is `(anchor, old, new)`: use an empty anchor for a unique match or
-a nonempty anchor to replace the first match after it. The Python runner
-compiles and reads the catalog automatically; the run command is unchanged.
+Python 3 (standard library only) is needed for the experiment drivers.
+
+### 2. Get the kernel sources
+
+This repository contains only the harnesses and tooling. The kernel under
+test is [PLSysSec/tock](https://github.com/PLSysSec/tock) ("tock-flux"):
+
+```bash
+git clone https://github.com/PLSysSec/tock ~/tock
+cd ~/tock
+git checkout a8664231563637bfd711d42a24fe74a176a4de3c  # optional: commit the results were checked against
+rustc --version                                        # installs and prints 1.87.0-nightly
+```
+
+### 3. Patch the kernel and add the fuzz crate (one time)
+
+Apply the changes described in [`kernel-patch/README.md`](kernel-patch/README.md).
+They only take effect in fuzz builds (`cfg(fuzzing)`) or relax visibility:
+
+```bash
+SPEC_FUZZ=~/CSE291y-Final-Project   # this repository
+TOCK=~/tock                         # the kernel checkout
+
+cp "$SPEC_FUZZ/kernel-patch/fuzz_shim.rs" "$TOCK/kernel/src/fuzz_shim.rs"
+cp -R "$SPEC_FUZZ/fuzz" "$TOCK/fuzz"
+```
+
+Then edit three files by hand, exactly as the diffs in `kernel-patch/README.md` show:
+
+1. `kernel/src/lib.rs`: after `mod syscall_driver;`, add `#[cfg(fuzzing)] pub mod fuzz_shim;`.
+2. `kernel/src/allocator.rs`: change `AllocateAppMemoryError`, `AppBreaks` and
+   `AppMemoryAllocator` from `pub(crate)` to `pub`, and make
+   `next_available_ipc_idx` `pub(crate)`.
+3. `Cargo.toml` (workspace root): `exclude = ["tools/", "fuzz/"]`.
+
+Check the edits (expect four matching lines, then one each):
+
+```bash
+cd "$TOCK"
+grep -nE "pub enum AllocateAppMemoryError|pub struct AppBreaks|pub struct AppMemoryAllocator|pub\(crate\) fn next_available_ipc_idx" kernel/src/allocator.rs
+grep -n "pub mod fuzz_shim" kernel/src/lib.rs
+grep -n 'exclude = \["tools/", "fuzz/"\]' Cargo.toml
+```
+
+These edits are uncommitted changes in the tock checkout. Don't run
+`git checkout -- kernel/src/allocator.rs` there: it discards the visibility
+changes and the fuzz crate stops compiling (error E0624).
+
+### 4. Set the environment (every shell)
+
+The drivers read these variables via [`tools/_env.py`](tools/_env.py):
+
+```bash
+export PATH="$HOME/.cargo/bin:$PATH"
+export TOCK_FLUX_REPO=~/tock                     # patched kernel checkout
+export SPEC_FUZZ_RESULTS=/tmp/spec-fuzz-results  # where result JSONs go
+export CARGO_TARGET_DIR=/tmp/fuzz-target         # build output; keep on local disk
+mkdir -p "$SPEC_FUZZ_RESULTS"
+```
+
+Set `TOCK_FLUX_REPO` and `SPEC_FUZZ_RESULTS` explicitly: their defaults are
+the original lab-machine paths. Point `SPEC_FUZZ_RESULTS` at
+[`results/`](results/) only if you mean to overwrite the committed results.
+
+### 5. Build the harnesses
+
+```bash
+cd "$TOCK_FLUX_REPO/fuzz"
+cargo fuzz build --sanitizer none
+```
+
+This builds every target in [`fuzz/Cargo.toml`](fuzz/Cargo.toml). Each
+function has a `_spec` harness (checks the Flux contract) and a `_plain`
+harness (same inputs, no checks). Some also have a generated `_gen` harness.
+
+| Area | Targets (`<name>_spec` / `<name>_plain`) |
+|---|---|
+| Allocator | `allocate_in_grant_region`, `in_app_ram_memory`, `in_app_flash_memory`, `add_shared_readwrite_buffer`, `update_app_memory`, `api_sequence` (multi-call sequences) |
+| IPC and construction | `next_available_ipc_idx`, `allocate_ipc_region`, `get_app_breaks` |
+| MPU | `mpu_default` |
+| Math helpers | `power_of_two`, `log_base_two` |
+| Collections | `ring_buffer` |
+
+### 6. Run a single harness
+
+```bash
+cd "$TOCK_FLUX_REPO/fuzz"
+cargo fuzz run --sanitizer none ring_buffer_spec  -- -seed=1 -max_total_time=30
+cargo fuzz run --sanitizer none ring_buffer_plain -- -seed=1 -max_total_time=30
+```
+
+A nonzero exit means a check failed. The output shows a `SPEC VIOLATION [Ln]`
+line, and libFuzzer saves the failing input as `fuzz/artifacts/<target>/crash-*`.
+
+Spec harnesses check three levels:
+
+| Level | Checks |
+|---|---|
+| L1 | Struct invariants |
+| L2 | L1 plus the literal Flux `ensures` clauses |
+| L3 (default) | L2 plus the stronger behavior the proofs rely on |
+
+Choose a level with `FUZZ_ORACLE_LEVEL`:
+
+```bash
+FUZZ_ORACLE_LEVEL=2 cargo fuzz run --sanitizer none ring_buffer_spec -- -max_total_time=30
+```
+
+The built binaries can also be run directly from
+`$CARGO_TARGET_DIR/<host-triple>/release/` (for example
+`aarch64-apple-darwin` or `x86_64-unknown-linux-gnu`; see
+`rustc -vV | grep host` inside the tock checkout).
+
+### 7. Run the experiments
+
+Run these from this repository, after step 4. Each driver writes JSON to `$SPEC_FUZZ_RESULTS`.
+
+| Experiment | Command | Typical duration |
+|---|---|---|
+| False-positive control: every pair on unmodified code | `python3 tools/run_mutants.py --only original --seeds 3 --budget 30 --jobs 8` | ~5 min |
+| Hand-written mutants, spec vs plain | `python3 tools/run_mutants.py --budget 30 --seeds 5 --jobs 8` | ~25 min |
+| Oracle-level comparison (spec arm only) | `python3 tools/run_mutants.py --only M1,M2,M3,M4,M5,M6,M7,M8,M9 --arms spec --levels 1,2,3 --budget 15 --seeds 3` | ~10 min |
+| Blind mutation set (cargo-mutants) | `python3 tools/run_cargo_mutants.py --budget 10 --seeds 2 --jobs 8` | hours |
+| Coverage, spec vs plain | `python3 tools/coverage_compare.py --cov-budget 30` (after a fresh build, see below) | ~10 min |
+
+`run_mutants.py` options:
+
+| Option | Meaning |
+|---|---|
+| `--only` | Comma-separated name prefixes (for example `M2,MP1`) or `original` |
+| `--arms` | `spec`, `plain` or both |
+| `--levels` | Comma-separated `FUZZ_ORACLE_LEVEL` values |
+| `--budget` | Seconds per run |
+| `--seeds` | Number of seeds per arm |
+| `--jobs` | Parallel runs |
+
+`run_cargo_mutants.py` options:
+
+| Option | Meaning |
+|---|---|
+| `--limit N` | Test only the first N mutants |
+| `--resume` | Continue from `cargo_mutants_results.json` |
+
+The blind run caches the mutant list in `$SPEC_FUZZ_RESULTS/cargo_mutants_list.json`;
+delete that file to re-enumerate.
+
+**Rebuild before measuring coverage.** The mutation drivers restore the
+original source when they finish but do not rebuild, so the binaries left
+behind still contain the last mutant. `coverage_compare.py` does not build
+either. After any mutation run:
+
+```bash
+(cd "$TOCK_FLUX_REPO/fuzz" && touch ../kernel/src/allocator.rs && cargo fuzz build --sanitizer none)
+python3 tools/coverage_compare.py --cov-budget 30
+```
+
+### 8. Run the spec-gap tests
+
+These are ordinary tests that document known gaps between specs and code:
+
+```bash
+cd "$TOCK_FLUX_REPO/fuzz"
+RUSTFLAGS="--cfg fuzzing" CARGO_TARGET_DIR=/tmp/fuzz-test-target cargo test --test align_gap --test math_gap
+```
+
+They use a separate target directory so they don't invalidate the fuzz build.
+
+### 9. Regenerate the census and generated harnesses (optional)
+
+Neither is needed to run the experiments above.
+
+```bash
+# Spec census: every Flux attribute in the kernel, classified
+python3 tools/spec_census.py "$TOCK_FLUX_REPO" /tmp/census.csv
+
+# Spec-to-harness translator for the five allocator targets.
+# It reads census.csv from the repository root and writes
+# translate_metrics.json there, so stage the CSV first.
+cp census/census.csv census.csv
+python3 tools/translate.py "$TOCK_FLUX_REPO" /tmp/gen
+rm census.csv translate_metrics.json
+```
+
+Copy files from `/tmp/gen` into `fuzz/fuzz_targets/gen/` only if you intend to
+replace the committed generated harnesses.
+
+## Making changes
+
+[`fuzz/`](fuzz/) in this repository is the source of truth; `$TOCK_FLUX_REPO/fuzz`
+is the copy that gets built. After editing harnesses, `fuzz/src/lib.rs` or
+`fuzz/Cargo.toml` here, sync and rebuild:
+
+```bash
+rsync -a --exclude target --exclude corpus --exclude artifacts fuzz/ "$TOCK_FLUX_REPO/fuzz/"
+(cd "$TOCK_FLUX_REPO/fuzz" && cargo fuzz build --sanitizer none)
+```
+
+- **New fuzz target:** add `fuzz_targets/<name>_spec.rs` and `<name>_plain.rs`
+  that decode inputs identically. Put shared decoding in `fuzz/src/lib.rs`.
+  Register both binaries in `fuzz/Cargo.toml`. To include them in the
+  experiments, add the pair to `TARGETS` in `tools/run_mutants.py` and to
+  `PAIRS` in `tools/coverage_compare.py`. For `run_cargo_mutants.py`, also add
+  it to `TARGET_BINS` and to the `FN_TARGETS` entries of the functions it covers.
+- **New hand-written mutant:** add an entry to [`tools/mutants.rs`](tools/mutants.rs).
+  Each patch is `(anchor, old, new)`: an empty anchor requires `old` to occur
+  exactly once; a nonempty anchor replaces the first `old` after it. The
+  mutant runs against targets in `TARGETS` whose tag list contains a prefix of
+  its name. No other change is needed.
+
+Older reproduction commands in [`docs/REPORT.md`](docs/REPORT.md) §9 use the
+original lab-machine paths; use the commands in this section instead.
 
 ## Host quirks we hit (save yourself the debugging)
 
 - Keep build artifacts on **local disk** — NFS corrupted archives (`ar` SIGBUS) and link jobs on our host.
 - NFS mtime granularity is ~1s: the runners bump mtimes after patching so cargo doesn't silently skip rebuilds (otherwise you measure the original binary).
 - The build-then-run discipline in the runners is mandatory: binaries are only valid until the next source patch.
+- On the original Linux host the system `ar` crashed; `tools/_env.py` points `AR` at the toolchain's `llvm-ar` when it exists. For manual builds there, `export AR=$(rustc --print sysroot)/lib/rustlib/x86_64-unknown-linux-gnu/bin/llvm-ar`.
