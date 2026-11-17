@@ -20,6 +20,9 @@ PAIRS = [
     ("add_shared_readwrite", "add_shared_readwrite_buffer_spec", "add_shared_readwrite_buffer_plain"),
     ("update_app_memory", "update_app_memory_spec", "update_app_memory_plain"),
     ("api_sequence", "api_sequence_spec", "api_sequence_plain"),
+    ("power_of_two", "power_of_two_spec", "power_of_two_plain"),
+    ("log_base_two", "log_base_two_spec", "log_base_two_plain"),
+    ("ring_buffer", "ring_buffer_spec", "ring_buffer_plain"),
 ]
 
 

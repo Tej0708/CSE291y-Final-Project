@@ -34,6 +34,9 @@ TARGETS = {
     "next_available_ipc_idx": ("next_available_ipc_idx_spec", "next_available_ipc_idx_plain", ["MNI", "MIPC"]),
     "allocate_ipc_region": ("allocate_ipc_region_spec", "allocate_ipc_region_plain", ["MIPC"]),
     "get_app_breaks": ("get_app_breaks_spec", "get_app_breaks_plain", ["MGAB"]),
+    "power_of_two": ("power_of_two_spec", "power_of_two_plain", []),
+    "log_base_two": ("log_base_two_spec", "log_base_two_plain", []),
+    "ring_buffer": ("ring_buffer_spec", "ring_buffer_plain", []),
 }
 
 

@@ -198,4 +198,48 @@ test = false
 doc = false
 bench = false
 
+# Non-allocator targets: math helpers and the ring buffer
+
+[[bin]]
+name = "power_of_two_spec"
+path = "fuzz_targets/power_of_two_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "power_of_two_plain"
+path = "fuzz_targets/power_of_two_plain.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "log_base_two_spec"
+path = "fuzz_targets/log_base_two_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "log_base_two_plain"
+path = "fuzz_targets/log_base_two_plain.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "ring_buffer_spec"
+path = "fuzz_targets/ring_buffer_spec.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "ring_buffer_plain"
+path = "fuzz_targets/ring_buffer_plain.rs"
+test = false
+doc = false
+bench = false
+
 [workspace]
